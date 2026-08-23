@@ -1,3 +1,4 @@
+
 name: Deploy Vite app to GitHub Pages
 
 on:
@@ -33,18 +34,18 @@ jobs:
         run: npm ci
 
       - name: Check environment variables
-  env:
-    VITE_SUPABASE_URL: ${{ secrets.VITE_SUPABASE_URL }}
-    VITE_SUPABASE_PUBLISHABLE_KEY: ${{ secrets.VITE_SUPABASE_PUBLISHABLE_KEY }}
-  run: |
-    if [ -z "$VITE_SUPABASE_URL" ]; then echo "❌ SUPABASE URL IS EMPTY"; exit 1; else echo "✅ SUPABASE URL EXISTS"; fi
-    if [ -z "$VITE_SUPABASE_PUBLISHABLE_KEY" ]; then echo "❌ SUPABASE KEY IS EMPTY"; exit 1; else echo "✅ SUPABASE KEY EXISTS"; fi
+        env:
+          VITE_SUPABASE_URL: ${{ secrets.VITE_SUPABASE_URL }}
+          VITE_SUPABASE_PUBLISHABLE_KEY: ${{ secrets.VITE_SUPABASE_PUBLISHABLE_KEY }}
+        run: |
+          if [ -z "$VITE_SUPABASE_URL" ]; then echo "SUPABASE URL IS EMPTY"; exit 1; else echo "SUPABASE URL EXISTS"; fi
+          if [ -z "$VITE_SUPABASE_PUBLISHABLE_KEY" ]; then echo "SUPABASE KEY IS EMPTY"; exit 1; else echo "SUPABASE KEY EXISTS"; fi
 
-- name: Build
-  run: npm run build
-  env:
-    VITE_SUPABASE_URL: ${{ secrets.VITE_SUPABASE_URL }}
-    VITE_SUPABASE_PUBLISHABLE_KEY: ${{ secrets.VITE_SUPABASE_PUBLISHABLE_KEY }}
+      - name: Build
+        run: npm run build
+        env:
+          VITE_SUPABASE_URL: ${{ secrets.VITE_SUPABASE_URL }}
+          VITE_SUPABASE_PUBLISHABLE_KEY: ${{ secrets.VITE_SUPABASE_PUBLISHABLE_KEY }}
 
       - name: Setup Pages
         uses: actions/configure-pages@v5
@@ -66,3 +67,4 @@ jobs:
       - name: Deploy to GitHub Pages
         id: deployment
         uses: actions/deploy-pages@v4
+
