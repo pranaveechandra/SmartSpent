@@ -3,6 +3,7 @@ import { supabase } from './lib/supabase'
 import Dashboard from './pages/Dashboard'
 import Login from './pages/Login'
 import Signup from './pages/Signup'
+import './App.css'
 
 function App() {
   const [session, setSession] = useState(null)
